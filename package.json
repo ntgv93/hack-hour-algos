@@ -1,0 +1,23 @@
+{
+  "name": "hack-hour-ftri-4",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "test": "jest",
+    "test-hh": "bash ./scripts/run-test.sh"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": { 
+    "jest": "^24.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodesmithLLC/hack-hour-ftri-4.git"
+  },
+  "main": "index.js",
+  "author": "Kyle Combs",
+  "license": "ISC"
+}
