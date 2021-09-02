@@ -61,19 +61,9 @@ const fizzbuzzbazz = num => {
     while(i <= num){
         str = '';
 
-        if(i % 3 === 0) {
-            if(i % 5 === 0) {
-                if(i % 7 === 0) str += 'fizzbuzzbazz';
-                else str += 'fizzbuzz';
-            }
-            else if(i % 7 === 0) str += 'fizzbazz';
-            else str += 'fizz';
-        }
-        else if(i % 5 === 0) {
-            if(i % 7 === 0) str += 'buzzbazz'
-            else str += 'buzz';
-        }
-        else if(i % 7 === 0) str += 'bazz';
+        if(i % 3 === 0) str += 'fizz';
+        if(i % 5 === 0) str += 'buzz';
+        if(i % 7 === 0) str += 'bazz';
         
         arr.push(str || i);
         i++;
