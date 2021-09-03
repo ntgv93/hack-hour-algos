@@ -46,12 +46,11 @@ drawStar(3) ->
 /|\
 
 drawStar(5) ->
-\ | /    
+\ | /
  \|/ 
 --+--
  /|\ 
 / | \
-
 */
 
 const drawStar = n => {
