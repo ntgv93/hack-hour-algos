@@ -5,16 +5,34 @@
 */
 
 const fastCache = func => {
-  
+  const outputs = {};
+
+  return function(arg) {
+    if(outputs[arg] == undefined){
+        outputs[arg] = func(arg);
+    }
+    
+    return outputs[arg];
+  }
 };
 
+
 /*
- Extension: Rewrite fastCache so it can handle array or object input, and any number of arguments.
- HINT: you might need to use the spread operator...
+Extension: Rewrite fastCache so it can handle array or object input, and any number of arguments.
+HINT: you might need to use the spread operator...
 */
 
 const fastCacheAdvanced = func => {
-  
+    const outputs = {};
+    
+    return function(...args){
+        const argsStr = args.join('');
+        if(outputs[argsStr] == undefined){
+            outputs[argsStr] = func(...args);
+        }
+        
+        return outputs[argsStr];
+    }
 };
 
 module.exports = {fastCache, fastCacheAdvanced};
