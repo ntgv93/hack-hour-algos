@@ -25,17 +25,33 @@ Caveats:
 
 */
 
-
 function EventEmitter() {
-
+  this.events = {};
 }
 
 EventEmitter.prototype.on = function(funcName, func) {
+  const funcs = this.events[funcName];
+  if(!funcs){
+    this.events[funcName] = [];
+  } 
 
+  this.events[funcName].push(func);
 };
 
 EventEmitter.prototype.trigger = function(funcName, ...args) {
-
+  const funcs = this.events[funcName]; 
+  if(funcs)
+    funcs.forEach(func => func(...args));
 };
+
+const instance = new EventEmitter();
+let countByOne = 0;
+let countByTwo = 0;
+instance.on('count', () => countByOne += 1);
+instance.on('count', () => countByTwo += 2);
+
+instance.trigger('count');
+console.log(countByOne);
+console.log(countByTwo);
 
 module.exports = EventEmitter;
