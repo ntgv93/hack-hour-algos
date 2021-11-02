@@ -8,7 +8,7 @@ const fastCache = func => {
   const outputs = {};
 
   return function(arg) {
-    if(outputs[arg] == undefined){
+    if(outputs[arg] === undefined){
         outputs[arg] = func(arg);
     }
     
@@ -26,13 +26,36 @@ const fastCacheAdvanced = func => {
     const outputs = {};
     
     return function(...args){
-        const argsStr = args.join('');
-        if(outputs[argsStr] == undefined){
+        if(!args.length)
+          return [];
+
+        const argsStr = typeof args[0] ==='object' ? args.map(el => Object.entries(el)).join('') :  args.join('');
+
+        if(outputs[argsStr] === undefined){
             outputs[argsStr] = func(...args);
+            console.log(argsStr);
         }
         
         return outputs[argsStr];
     }
 };
+
+const pluralizedKeys = (...objs) => {
+  return objs.reduce((pluralizedKeys, obj) => {
+    return pluralizedKeys.concat(Object.keys(obj).map(key => `${key}s`));
+  }, [])
+};
+
+console.log(pluralizedKeys());
+console.log(pluralizedKeys({'plant': true}));
+console.log(pluralizedKeys({'plant': true}));
+console.log(pluralizedKeys({'plant': true}));
+
+const func = fastCacheAdvanced(pluralizedKeys);
+console.log(func({'plant': true}))
+console.log(func({'plant': true}))
+console.log(func({'banana': true}))
+console.log(func({'banana': true}))
+console.log(func({'banana': true}, {'tree': true}))
 
 module.exports = {fastCache, fastCacheAdvanced};
