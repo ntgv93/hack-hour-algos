@@ -21,12 +21,36 @@ maxSubarray(input2);
 */
 
 const maxSubarray = (arr) => {
+  // sliding window algo
 
+  if(!arr || !arr.length)
+    return 0;
+
+  let max = arr.reduce((a, c) => a + c);
+  let maxSubarr = [...arr];
+
+  for(let i = 0; i < arr.length; i++){
+    let tempMax = 0;
+    let tempArr = [];
+    for(let j = i; j < arr.length; j++){
+      tempMax += arr[j];
+      tempArr.push(arr[j]);
+
+      if(tempMax > max){
+        maxSubarr = [...tempArr]
+        max = tempMax;
+      }
+    }
+  }
+
+  return max;
 }
 
+console.log(maxSubarray([15, 20, -5, 10]));
 /*
   Extension: solve in linear time and constant space
   Hint: Kadane's Algorithm
+  https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
 */
 
 const kadanesMaxSubarray = (arr) => {
