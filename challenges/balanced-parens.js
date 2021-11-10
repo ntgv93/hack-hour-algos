@@ -26,6 +26,41 @@
 
 const balancedParens = input => {
 
+  if(!input)
+    return false;
+
+  // ignore all non bracket characters
+  const formattedStr = input.replace(/[^\[\](){}]/g, '');
+
+  // create object to store open brackets as key and closed brackets as corresponding values
+  const brackets = {
+    '{':'}',
+    '[':']',
+    '(':')',
+  }
+  
+  const stack = [];
+
+  // iterate through input
+  for(let i = 0; i < formattedStr.length; i++){
+    // if open bracket, save corresponding value in stack
+    if(brackets[formattedStr[i]])
+      stack.push(brackets[formattedStr[i]]);
+    // else,
+    // pop from stack and if popped element does not equal current element, return false
+    else
+      if(formattedStr[i] !== stack.pop())
+        return false;
+  }
+
+  // if input is balanced, stack will be empty after iteration
+  // return true if stack is empty 
+  return stack.length === 0;
 };
+
+console.log(balancedParens('('));  // false
+console.log(balancedParens('()')); // true
+console.log(balancedParens(')('));  // false
+console.log(balancedParens('const coolFunc = () => { anotherCoolFunc(); }'));  // true
 
 module.exports = { balancedParens} ;

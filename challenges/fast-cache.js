@@ -5,16 +5,57 @@
 */
 
 const fastCache = func => {
-  
+  const outputs = {};
+
+  return function(arg) {
+    if(outputs[arg] === undefined){
+        outputs[arg] = func(arg);
+    }
+    
+    return outputs[arg];
+  }
 };
 
+
 /*
- Extension: Rewrite fastCache so it can handle array or object input, and any number of arguments.
- HINT: you might need to use the spread operator...
+Extension: Rewrite fastCache so it can handle array or object input, and any number of arguments.
+HINT: you might need to use the spread operator...
 */
 
 const fastCacheAdvanced = func => {
-  
+    const outputs = {};
+    
+    return function(...args){
+        if(!args.length)
+          return [];
+
+        const argsStr = typeof args[0] ==='object' ? args.map(el => Object.entries(el)).join('') :  args.join('');
+
+        if(outputs[argsStr] === undefined){
+            outputs[argsStr] = func(...args);
+            console.log(argsStr);
+        }
+        
+        return outputs[argsStr];
+    }
 };
+
+const pluralizedKeys = (...objs) => {
+  return objs.reduce((pluralizedKeys, obj) => {
+    return pluralizedKeys.concat(Object.keys(obj).map(key => `${key}s`));
+  }, [])
+};
+
+console.log(pluralizedKeys());
+console.log(pluralizedKeys({'plant': true}));
+console.log(pluralizedKeys({'plant': true}));
+console.log(pluralizedKeys({'plant': true}));
+
+const func = fastCacheAdvanced(pluralizedKeys);
+console.log(func({'plant': true}))
+console.log(func({'plant': true}))
+console.log(func({'banana': true}))
+console.log(func({'banana': true}))
+console.log(func({'banana': true}, {'tree': true}))
 
 module.exports = {fastCache, fastCacheAdvanced};
