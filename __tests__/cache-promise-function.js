@@ -117,7 +117,7 @@ describe('cachePromiseFunction test', () => {
   });
 });
 
-xdescribe('cachePromiseFunction2 test', () => {
+describe('cachePromiseFunction2 test', () => {
   const fakeApi = url => {
     return new Promise(resolve => {
       apiCalls++;
