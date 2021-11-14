@@ -85,7 +85,7 @@ const cachePromiseFunction = get => {
       cache[arg] = get(arg);
     }
 
-    return cache[arg];
+    return Promise.resolve(cache[arg]);
   }
 };
 
@@ -112,7 +112,7 @@ As above, don't worry about promise rejections/errors or using .catch()
 // "get" is a p-function, that is, a function that takes in a url-string and
 // returns a promise
 const cachePromiseFunction2 = get => {
-  
+
 };
 
 module.exports = {memoize, cachePromiseFunction, cachePromiseFunction2};
