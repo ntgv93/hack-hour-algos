@@ -20,7 +20,15 @@ that's convertable to JSON. (This is just the memoize problem)
 */
 
 const memoize = func => {
-  
+  let cache = {};
+
+  return function(arg){
+    if(!cache.hasOwnProperty(arg)){
+      cache[arg] = func(arg);
+    }
+
+    return cache[arg];
+  }
 };
 
 /*
@@ -68,7 +76,17 @@ Hint: look up Promise.resolve - https://developer.mozilla.org/en-US/docs/Web/Jav
 // "get" is a p-function, that is, a function that takes in a url-string and
 // returns a promise
 const cachePromiseFunction = get => {
+  // returns a new function will only invoke the get if get has not been invoked with the given input before
   
+  let cache = {};
+
+  return function(arg){
+    if(!cache.hasOwnProperty(arg)){
+      cache[arg] = get(arg);
+    }
+
+    return cache[arg];
+  }
 };
 
 
