@@ -28,7 +28,55 @@ O(n) time.
 
 const twoSumClosest = (nums, target) => {
   
+  if(!nums || !nums.length)
+    return undefined;
+  
+  // sort array
+
+  // set default sum to target distance to infinity
+
+  // use the two pointers system - one on each end
+
+  // while left pointer is less than right pointer
+
+    // find the sum of elements at pointers
+
+    // find the distance between the sum and the target
+    
+    // if local distance is less than global distance, 
+      // update global distance
+      // cache elements
+
+    // if num is local distance is 
+
+  nums.sort();
+
+  console.log(nums);
+  
+  let firstEl, secEl;
+  let global_diff = Infinity;
+
+  let i = 0;
+  let j = nums.length - 1;
+
+  while(i < j){
+    const sum = nums[i] + nums[j];
+    const local_diff = Math.abs(sum-target);
+    
+    if(local_diff < global_diff){
+      global_diff  = sum;
+    }
+  
+    if(sum > target)
+      j--;
+    else 
+      i++;
+  }
+  
+  return global_diff ;
+  
 };
 
+console.log(twoSumClosest([2, -3, -6, 7, 4], 3));
 module.exports = {twoSumClosest};
 

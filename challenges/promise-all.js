@@ -20,7 +20,26 @@ for info on the Promise constructor.
 */
 
 const promiseAll = promises => {
-  
+  // create an array that will hold all promise values 
+  const result = Array(promises.length);
+
+  /* To keep track of how many promise got resolved */
+  let counter = 0;
+
+  // return a new promise 
+  return new Promise((resolve, reject) => {
+    promises.forEach((promise, i) => {
+      Promise.resolve(promise)
+        .then(item => {
+          counter++;
+          result[i] = item; // result push may not work because some of order of insertion may not be the same, hence why assignment is needed
+
+          if(promises.length === counter)
+            resolve(result);
+        })
+        .catch(err => reject(err));
+    });
+  });  
 };
 
 
