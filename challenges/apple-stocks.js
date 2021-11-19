@@ -20,8 +20,33 @@ calculate profit along the array.
 
 */
 
+// since a share can only be sold after it has been bought, we will 
+// two pointer technique, one to keep track of the minimum number, other to go down the array
+
 const highestProfit = apple_stock => {
 
+  if(!apple_stock || !apple_stock.length)
+    return 0;
+
+  // variable to cache min price
+  let minPrice = apple_stock[0];
+
+  // variable to cache max profit
+  let maxProfit = 0;
+
+  // iterate through array
+  for(let i = 0; i < apple_stock.length; i++){
+    // find min price
+    if(apple_stock[i] < minPrice)
+      minPrice = apple_stock[i];
+
+    // find max profit
+    const localMaxProfit = apple_stock[i] - minPrice;
+    if(localMaxProfit > maxProfit)
+      maxProfit = localMaxProfit;
+  }
+
+  return maxProfit;
 }
 
 module.exports = {highestProfit}
