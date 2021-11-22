@@ -36,7 +36,29 @@ Utilizing recursion is not necessary, nor recommended.
 */
 
 const bfs = (root, callback) => {
-  
+
+  // declare a queue to hold nodes, starting with the root
+  const queue = [root];
+  // keep track of index
+  let i = 0;
+
+  // iterate through nodes in queue
+  while(queue[i] !== undefined){
+
+    // get current node from queue
+    const node = queue[i++];
+
+    // perform callback on node vakye
+    callback(node.value);
+
+    // if node has left child, push left child into queue
+    if(node.left)
+      queue.push(node.left);
+    
+    // if node has right child, push right child into queue
+    if(node.right)
+      queue.push(node.right);
+  }
 };
 
 /*
