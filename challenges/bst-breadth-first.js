@@ -110,7 +110,65 @@ neighbors are traversable and haven't already been visited.
 */
 
 const minimumDistance = grid => {
+
+  if(!grid || !grid.length)
+    return -1;
+
+  // declare a queue to hold x-y positions and distances
+  const queue = [
+    {
+      col: 0,
+      row: 0,
+      dist: 0
+    }
+  ]
+
+  let i = 0; // keep track of elements in queue
   
+  // declare an array to keep track of visited positions
+  const visited = grid.map(arr => arr.map(el => false));
+
+  // create a helper function to check if current position
+  const processPosition = (row, col, dist) => {
+    // if current position is not visited and isn't 1, pushed into queue and mark position as visited
+    if(!visited[row][col] && grid[row][col] !== 1){
+      queue.push({row, col, dist});
+      visited[row][col] = true;
+    }
+  }
+
+  // traverse through the grid with bfs
+  while(queue[i] !== undefined){
+    // if current node the grid is 2, return current distance
+    let {row, col, dist} = queue[i++];
+    if(grid[row][col] === 2)
+      return dist;
+
+    // increment distance with each node in queue
+    dist++;
+
+    // check top neighbor
+    if(row > 0)
+      processPosition(row - 1, col, dist);
+    // check bottom neighbor
+    if(row < grid.length - 1)
+      processPosition(row + 1, col, dist);
+    // check left neighbor
+    if(col > 0)
+      processPosition(row, col - 1, dist);
+    // check right neighbor
+    if(col < grid[0].length - 1)
+      processPosition(row, col + 1, dist);
+  }
+
+  // return -1 if no possible path is found
+  return -1;
 };
+
+minimumDistance([
+  [0, 0, 1, 1],
+  [0, 0, 1, 2],
+  [1, 0, 0, 0]
+])
 
 module.exports = {BinarySearchTree, bfs, minimumDistance};

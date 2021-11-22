@@ -33,7 +33,7 @@ describe('bfs test', () => {
   });
 });
 
-xdescribe('minimumDistance test', () => {
+describe('minimumDistance test', () => {
   let grid;
   
   it('handles single-row and single-column grids', () => {
