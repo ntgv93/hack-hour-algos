@@ -27,12 +27,12 @@ and has 3 links.
 const bstHeight = node => {
 
   // base case:
-    // if node is null, return -1
+  // if node is null, return -1
   if(node === null)
     return -1;
 
   // recursive case
-    // return the max height between left and right subtrees, incrementing height with each level
+  // return the max height between left and right subtrees, incrementing height with each level
   const lHeight = bstHeight(node.left);
   const rHeight = bstHeight(node.right);
 
@@ -66,8 +66,42 @@ const bstHeight = node => {
   The tree on the right is superbalanced since the difference in height is not more than 1 at any given subtree.
  */
 
-const superbalanced = tree => {
+// helper function to get height of a tree given a root node
+const bstHeightUtil = node => {
+  if(node === null)
+    return -1;
+
+  const lHeight = bstHeightUtil(node.left);
+  const rHeight = bstHeightUtil(node.right);
+
+  return Math.max(lHeight + 1, rHeight + 1);
+} 
+
+// recursive approach: traverse down the tree with dfs 
+// for each node down the tree, compare left and right subtree heights
+// if height differences is larger than 1, return false
+// if leaf node is reached, return true
+const superbalanced = (node, lHeight = 0, rHeight = 0) => {
+  // base cases
+  // if difference between 2 heights is more than 1, return false
+  // if leaf node is reached, return true
+  if(Math.max(lHeight, rHeight) - Math.min(lHeight, rHeight) > 1)
+    return false;
+  if(node === null)
+    return true;
   
+  // get the height of left subtree
+  lHeight = bstHeightUtil(node.left);
+  // get the height of right subtree
+  rHeight = bstHeightUtil(node.right);
+
+  // recursively check if the left subtree is superbalanced
+  const leftTreeBalanced = superbalanced(node.left, lHeight, rHeight);
+  // recursively check if right subtree is superbalanced
+  const rightTreeBalanced = superbalanced(node.right, lHeight, rHeight);
+   
+  // if both trees are superbalanced, return true
+  return leftTreeBalanced && rightTreeBalanced;
 };
 
 module.exports = {BinarySearchTree, bstHeight, superbalanced};
