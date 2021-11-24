@@ -23,8 +23,20 @@ and has 3 links.
 
 */
 
-const bstHeight = tree => {
-  
+// recursive approach: traverse down the tree with depth first search 
+const bstHeight = node => {
+
+  // base case:
+    // if node is null, return -1
+  if(node === null)
+    return -1;
+
+  // recursive case
+    // return the max height between left and right subtrees, incrementing height with each level
+  const lHeight = bstHeight(node.left);
+  const rHeight = bstHeight(node.right);
+
+  return Math.max(lHeight + 1, rHeight + 1);
 };
 
 /*
