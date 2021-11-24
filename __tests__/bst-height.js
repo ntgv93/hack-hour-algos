@@ -19,7 +19,7 @@ describe('bstHeight test', () => {
   });
 });
 
-xdescribe('superbalanced test', () => {
+describe('superbalanced test', () => {
   let tree;
   
   beforeEach(() => {
