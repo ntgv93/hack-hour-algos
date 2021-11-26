@@ -12,17 +12,17 @@
 
 */
 
+// recursively break down array into 2 halves until each array is just 1 element
+// with a helper function compare the 2 halves, and combine them into a sorted set 
+// return the sorted set
+
 // merge sorted arrays into a sorted array
 const merge = (arr1, arr2) => {
   const sortedArr = [];
 
   while(arr1.length && arr2.length){
-
     // pick the smaller element among the smallest elements of left and right sub arrays
-    if(arr1[0] < arr2[0])
-      sortedArr.push(arr1.shift());
-    else
-      sortedArr.push(arr2.shift());
+      sortedArr.push(arr1[0] < arr2[0] ? arr1.shift() : arr2.shift());
   }
 
   // Concatenate any left over elements in case we didn't go through entire sub arrays
