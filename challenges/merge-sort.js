@@ -16,7 +16,10 @@
 // with a helper function compare the 2 halves, and combine them into a sorted set 
 // return the sorted set
 
+// time complexity: o(n * n * log n)
+  // could probably replace the arr.shift() to achiehve o(n * log n)
 // merge sorted arrays into a sorted array
+
 const merge = (arr1, arr2) => {
   const sortedArr = [];
 
