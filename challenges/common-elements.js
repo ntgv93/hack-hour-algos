@@ -17,6 +17,10 @@ commonElements(arr1, arr2, arr3) -> [2, 3, 2000, 'dog']
 
 const commonElements = (...args) => {
 
+  // iterate through all sub arrays
+  // get common elements in the first 2 array, then compare those elements with next array, and so on
+  const commonEls = args.reduce((acc, currVal) => acc.filter(el => currVal.includes(el))); 
+  return commonEls.length ? commonEls : 'Nothing in Common!';
 }
 
 
