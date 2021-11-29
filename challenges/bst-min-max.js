@@ -29,9 +29,30 @@ returns 8, becuase 9 - 1 = 8
 */
 
 const bstMinMax = root => {
-  
+  // find min by traversing left
+  // find right by traversing right
+  let min = root.value;
+  let max = root.value;
+
+  let leftChild = root.left;
+  while(leftChild){
+    min = leftChild.value;
+    leftChild = leftChild.left;
+  }
+
+  let rightChild = root.right;
+  while(rightChild){
+    max = rightChild.value;
+    rightChild = rightChild.right;
+  }
+
+  return max - min;
+
 };
 
+const root = new BinarySearchTree(4);
+root.left = new BinarySearchTree(2);
+root.right = new BinarySearchTree(7);
 /*
 
 Extension: (not necessarily related in technique to above problem, but
