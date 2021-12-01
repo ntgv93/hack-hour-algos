@@ -1,0 +1,83 @@
+// array of strings, will not contain other data types
+/* [abc, absdsadas, asdasa, adoiajsla, salkd, ab, abcd, abide, asdjhdal, dfsddffd, glsjdsa] */
+// array will not be empty
+
+class Node {
+  constructor(){
+    // each node can have multiple keys
+    this.keys = new Map(); // holds char - node pairs
+  }
+}
+
+class Trie {
+  constructor(){
+    this.root = new Node();
+
+    this.mclp = ''; // most common longest prefix
+    this.mclpCount = 0; // counts the occurence of each mclp 
+    
+    this.localMclp = ''; // cache local mlcp for each sub tree from root
+    this.localMclpCount= 0; // cache local mclp count for each sub tree from root
+  }
+
+  add(str, node = this.root, level = 1){
+    // if there are no char nodes in the tree, then the first string will considered the default mclp
+    if(!this.root.keys.size){
+      this.mclp = str;
+      this.mclpCount = 1;
+    }
+
+    // if adding a new subtree from root, reset local variables
+    if(node === this.root && !node.keys.has(str[0])){
+      this.localMclpCount = 0;
+      this.localMclp = '';
+    }
+
+    // base case for recursion: if all chars in the input string have been added to the trie
+    // then count all occurences of mclp in this subtree
+    if(str.length === 0){
+      this.localMclpCount++;
+      
+      // if local mclp is larger than global mclp, update global mclp 
+      if(this.localMclpCount > this.mclpCount){
+        this.mclpCount = this.localMclpCount;
+        this.mclp = this.localMclp;
+      }
+      
+      return;
+    }
+    
+    // if current node does not have a key === first char in string
+    // set first char is key and new Node as value in current node
+    if(!node.keys.has(str[0])){
+      node.keys.set(str[0], new Node());
+    } 
+
+    // if current node already has a key === first char in string
+    // reset localMclp if it is a immediate child node of root
+    // build localMclp
+    else {
+      if(level === 1)
+        this.localMclp = '';  
+        
+      this.localMclp += str[0];
+    }
+    
+    // perform recursion with the first char removed from string
+    return this.add(str.substr(1), node.keys.get(str[0]), level + 1);
+  }
+}
+
+
+const getMostCommonLongestPrefixes = arr => {
+  const trie = new Trie();
+  arr.forEach(str => trie.add(str))
+  console.log(trie.localMclpCount);
+  return trie.mclp;
+}
+
+console.log(
+  getMostCommonLongestPrefixes([
+      "abc",
+    ])
+  );  
