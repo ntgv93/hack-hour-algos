@@ -20,6 +20,13 @@ class Trie {
     this.localMclpCount= 0; // cache local mclp count for each sub tree from root
   }
 
+  // TO DO: get the root's child with the most amount of words during the add functionality
+
+  // TO DO: construct the tree
+
+  // TO DO: find most frequently occuring lcp -> given the root child with most words from the add function, iterate through it and find the LCP 
+
+
   add(str, node = this.root, level = 1){
     // if there are no char nodes in the tree, then the first string will considered the default mclp
     if(!this.root.keys.size){
@@ -49,9 +56,8 @@ class Trie {
     
     // if current node does not have a key === first char in string
     // set first char is key and new Node as value in current node
-    if(!node.keys.has(str[0])){
+    if(!node.keys.has(str[0]))
       node.keys.set(str[0], new Node());
-    } 
 
     // if current node already has a key === first char in string
     // reset localMclp if it is a immediate child node of root
@@ -59,15 +65,15 @@ class Trie {
     else {
       if(level === 1)
         this.localMclp = '';  
-        
-      this.localMclp += str[0];
+      
+      if(level = 1)
+        this.localMclp += str[0];
     }
     
     // perform recursion with the first char removed from string
     return this.add(str.substr(1), node.keys.get(str[0]), level + 1);
   }
 }
-
 
 const getMostCommonLongestPrefixes = arr => {
   const trie = new Trie();
@@ -78,6 +84,8 @@ const getMostCommonLongestPrefixes = arr => {
 
 console.log(
   getMostCommonLongestPrefixes([
-      "abc",
+      "a",
+      "ab",
+      "ab",
     ])
   );  
