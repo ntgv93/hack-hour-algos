@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodesmithLLC/hack-hour-ftri-4.git"
+    "url": "git+https://github.com/ntgv93/hack-hour-algos.git"
   },
   "main": "index.js",
   "author": "Kyle Combs",
