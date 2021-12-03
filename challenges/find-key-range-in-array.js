@@ -1,3 +1,5 @@
+// Given a sorted array of integers, return the low and high index of the range given key. You must return -1 if the indexes are not found.
+
 // strategy: 
 // using binary search twice
 // once to look at the range that is immediately left outside of the key range and find it's upper bound
@@ -29,7 +31,7 @@ let findLowIndex = function(arr, key,) {
   return -1;
 };
 
-console.log(findLowIndex([1,1,2,2,2,2,3], 3));
+console.log(findLowIndex([1,1,2,2,2,2,3], 2));
 
 let findHighIndex = function(arr, key) {
   let start = 0, end = arr.length - 1;
