@@ -28,6 +28,8 @@ let rotateArray = function(arr, n) {
   // reverse the first elements up to end - n in the reversed array
 // reverse the remaining elements in the arrays
 
+// time complexity: O(2n)
+// space complexity: O(1) - arr is modified in place
 let rotateArray2 = (arr, n) => {
   
   // since n is being used as an index below, this is to account for situations when n is larger then array.length
