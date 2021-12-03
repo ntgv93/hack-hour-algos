@@ -31,5 +31,29 @@ const findLeastCommonNumber = function(a, b, c) {
 
 const a = [1,2,3,9,4,5];
 const b = [6,7,8,9];
-const c = [9,13,15,20];
+const c = [3,9,13,15,20];
 console.log(findLeastCommonNumber(a, b, c)); // expected 9
+
+// stategy: get all common numbers from input arrays
+// return the smallest number from the reduced array
+
+// time complexity: O(n)
+const findLeastCommonNumber2 = arrs => {
+  // get all common numbers
+  const arr = arrs.reduce((a, c) => {
+    const commonNums = [];
+    
+    a.forEach(num => {
+      if(c.includes(num)){
+        commonNums.push(num);
+        //short circuiting the loop
+        return commonNums;
+      }
+    })
+    
+    return commonNums;
+  });
+  
+  return arr[0] || -1;
+}
+console.log(findLeastCommonNumber2([a, b, c])); // expected 9
