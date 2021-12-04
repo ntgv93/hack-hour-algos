@@ -2,7 +2,6 @@
 
 // We need to maximize the single buy/sell profit. If we can’t make any profit, we’ll try to minimize the loss. For the below examples, buy and sell prices for making a maximum profit are highlighted.
 
-
 // strategy: two pointer approach
 // 1 pointer to keep track of the buy price, the other to go down the rest of the array
 // iterate through the array
