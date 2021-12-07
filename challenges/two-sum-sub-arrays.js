@@ -29,6 +29,3 @@ const twoSum = (arr, target) => {
 
   return false;
 }
-
-console.log(countSubArrs([2, 4, 7, 5, 3, 5, 8, 5, 1, 7], 4, 10)); // should be 5
-console.log(countSubArrs([15, 8, 8, 2, 6, 5, 1, 7], 2, 8)); // should be 2
