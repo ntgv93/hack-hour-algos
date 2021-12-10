@@ -16,24 +16,29 @@
 // with a helper function compare the 2 halves, and combine them into a sorted set 
 // return the sorted set
 
-// time complexity: o(n * n * log n)
-  // could probably replace the arr.shift() to achiehve o(n * log n)
+// time complexity: O(n * log n) for worst case, as it always divides the array in two halves and takes linear time to merge arrays
+// space complexity: O(n) - for every merge recursive call, an array is created that takes O(n) space to hold all values in arrays
 // merge sorted arrays into a sorted array
 
 const merge = (arr1, arr2) => {
-  const sortedArr = [];
-
-  while(arr1.length && arr2.length){
+  const mergedArr = [];
+  let i = 0, j = 0;
+  while(arr1[i] !== undefined || arr2[j] !== undefined){
     // pick the smaller element among the smallest elements of left and right sub arrays
-      sortedArr.push(arr1[0] < arr2[0] ? arr1.shift() : arr2.shift());
+      if(arr1[i] <= arr2[j])
+        mergedArr.push(arr1[i++]);
+      else if (arr1[i] > arr2[j])
+        mergedArr.push(arr2[j++]);
+      // add any left over elements to the merged array
+      // in case there is a subarray that's larger than the other
+      else
+        mergedArr.push(arr1[i++] || arr2[j++]);
   }
 
-  // Concatenate any left over elements in case we didn't go through entire sub arrays
-  return [...sortedArr, ...arr1, ...arr2];
+  return mergedArr;
 }
 
 const mergeSort = array => {
-
   // if there is only 1 element left in the array, it is considered sorted and returned
   if(array.length < 2)
     return array;
