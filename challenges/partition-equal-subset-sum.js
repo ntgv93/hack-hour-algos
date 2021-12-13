@@ -15,6 +15,8 @@
   // loop through nums and see what values they add up to - if some combination of values add up to half, then return true
   // if no values add up to half, return false
 
+// Time complexity: O(n * h) where n is the number of arg nums and h is half of sum of elements
+// Space complexity: O(h) where h is half of the sum of values
 let canPartition = function(nums) {
   // find sum
   const sum = nums.reduce((a, c) => a + c);
@@ -50,3 +52,6 @@ let canPartition = function(nums) {
 
   return false;
 };
+
+console.log(canPartition([1,2,3]));
+console.log(canPartition([1,2,2]));
