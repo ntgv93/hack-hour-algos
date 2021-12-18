@@ -28,6 +28,8 @@ function solution(operations) {
     const strArr = str.split(' ');
     const op = strArr[0];
     const argSentence = strArr.slice(1).join(" "); 
+
+    
     
     switch(op){
       case 'TYPE':
@@ -96,3 +98,5 @@ const arr =
  "TYPE !"];
 
 console.log(solution(arr));
+
+

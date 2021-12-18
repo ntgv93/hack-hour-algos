@@ -10,3 +10,16 @@ const gcd = (a, b) => {
 
   return gcd(b % a, a);
 }
+
+const gcdArr = arr => {
+  // iterate through array and find gcd of 2 adjacent numbers
+  let result = arr[0];
+
+  for(let i = 1; i < arr.length; i++){
+    result = gcd(result, arr[i]);
+  }
+
+  return result;
+}
+
+console.log(gcdArr([2,2,2,200, 3, 0]));
